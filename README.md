@@ -1,0 +1,2 @@
+# c-program
+Assignment Purpose
