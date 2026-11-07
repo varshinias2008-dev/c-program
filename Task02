@@ -1,0 +1,43 @@
+
+#include <stdio.h>
+
+static int calls = 0;
+
+int verify_card(int passenger_id) {
+    calls++;
+    return passenger_id % 10 == 0;
+}
+
+int main(void) {
+    int a_calls = 0;
+    int b_calls = 0;
+    int bitwise_calls = 0;
+    int id;
+
+    for (id = 1; id <= 1000; id++) {
+        int senior = (id % 10 == 0);
+
+        calls = 0;
+        if ((senior && 1) || verify_card(id)) {
+        }
+        a_calls += calls;
+
+        calls = 0;
+        if (verify_card(id) || senior) {
+        }
+        b_calls += calls;
+
+        calls = 0;
+        if ((senior & 1) | verify_card(id)) {
+        }
+        bitwise_calls += calls;
+    }
+
+    printf("Senior-first verification calls = %d\n", a_calls);
+    printf("Card-first verification calls = %d\n", b_calls);
+    printf("Bitwise condition verification calls = %d\n", bitwise_calls);
+
+    puts("Note: with audit logging, evaluate the required audit semantics before reordering.");
+
+    return 0;
+}
