@@ -1,0 +1,28 @@
+
+#include <stdio.h>
+
+int main(void) {
+    double price, qty;
+    int senior;
+    double gross, discount, taxable, tax, total, net;
+
+    printf("Enter unit price, quantity and senior-citizen status (1=yes, 0=no): ");
+
+    if (scanf("%lf %lf %d", &price, &qty, &senior) != 3)
+        return 1;
+
+    gross = price * qty;
+    discount = senior ? gross * 0.15 : 0.0;
+    taxable = gross - discount;
+    tax = taxable * 0.05;
+    total = taxable + tax;
+    net = total > 1000.0 ? total - 50.0 : total;
+
+    printf("Gross amount = %.2f\n", gross);
+    printf("Discount = %.2f\n", discount);
+    printf("Tax = %.2f\n", tax);
+    printf("Total = %.2f\n", total);
+    printf("Net payable = %.2f\n", net);
+
+    return 0;
+}
